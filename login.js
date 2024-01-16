@@ -28,7 +28,7 @@ video.addEventListener('play', async () => {
     const results = resizedDetections.map(d => faceMatcher.findBestMatch(d.descriptor))
     let matcher = results[0]
     const { _label, _distance } = matcher
-    if (_label === 'praize1') {
+    if (_label === 'praize2') {
       login.classList.add('active')
       login.innerHTML = '<a href="index.html">Login</a>'
     } else {
@@ -41,13 +41,13 @@ video.addEventListener('play', async () => {
 
 
 function loadLabeledImages() {
-  const labels = ['praize1']
+  const labels = ['praize2']
 
   return Promise.all(
     labels.map(async label => {
       const descriptions = []
       for (let i = 1; i <= 7; i++) {
-        const img = await faceapi.fetchImage(`https://praizeokidi.github.io/praize1/${label}/${i}.jpeg`)
+        const img = await faceapi.fetchImage(`https://praizeokidi.github.io/praize2/${label}/${i}.jpeg`)
         const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor()
         descriptions.push(detections.descriptor)
       }
